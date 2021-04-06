@@ -60,6 +60,9 @@ export const MainProfile = styled.div`
     justify-content: space-evenly;
     align-items: flex-end;
   }
+  li button {
+    background: red;
+  }
 `;
 export const MatchButtons = styled.button<ButtonProps>`
   width: 60px;

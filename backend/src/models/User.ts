@@ -19,6 +19,10 @@ class User {
   @Column()
   email: string;
 
+  avatar: string;
+
+  age: number;
+
   @Column()
   lat: string;
 
