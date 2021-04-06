@@ -23,13 +23,14 @@ usersRouter.get('/', ensureAuthenticated, async (request, response) => {
   const user = await userRepository.findOne({
     where: { id: request.user.id },
   });
+  delete user?.password;
   return response.json(user);
 });
 
 usersRouter.get('/find', ensureAuthenticated, async (request, response) => {
   const findUser = new FindValidUserService();
   const user = await findUser.execute(request.user);
-
+  delete user.user.password;
   return response.json(user);
 });
 
@@ -52,7 +53,7 @@ usersRouter.put('/', ensureAuthenticated, async (request, response) => {
 
   request.body.user_id = request.user.id;
   const user = await updateUser.execute(request.body);
-
+  delete user.password;
   return response.json(user);
 });
 
@@ -67,6 +68,7 @@ usersRouter.put('/cords', ensureAuthenticated, async (request, response) => {
   user.lon = request.body.lon;
 
   await userRepository.save(user);
+  delete user.password;
   return response.json(user);
 });
 
@@ -75,7 +77,7 @@ usersRouter.put('/list', ensureAuthenticated, async (request, response) => {
 
   request.body.user_id = request.user.id;
   const user = await updateList.execute(request.body);
-
+  delete user.password;
   return response.json(user);
 });
 
