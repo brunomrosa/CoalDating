@@ -12,6 +12,7 @@ import UpdateUserService from '../services/UpdateUserService';
 import User from '../models/User';
 import CalculateDistanceService from '../services/CalculateDistanceService';
 import UpdateLikeOrDislike from '../services/UpdateLikeOrDeslike';
+import FindValidUserService from '../services/FindValidUserService';
 
 const usersRouter = Router();
 const upload = multer(uploadConfig);
@@ -26,35 +27,10 @@ usersRouter.get('/', ensureAuthenticated, async (request, response) => {
 });
 
 usersRouter.get('/find', ensureAuthenticated, async (request, response) => {
-  const userRepository = await getRepository(User);
-  const yourself = await userRepository.findOne({
-    where: { id: request.user.id },
-  });
+  const findUser = new FindValidUserService();
+  const user = await findUser.execute(request.user);
 
-  const findUser = async () => {
-    const user = await getRepository(User)
-      .createQueryBuilder('user')
-      .orderBy('RANDOM()')
-      .getOne();
-    const yourself = await userRepository.findOne({
-      where: { id: request.user.id },
-    });
-
-    const arr = [yourself, user];
-    const distance = await CalculateDistanceService.execute(arr);
-    return { user, distance };
-  };
-
-  var userValid = await findUser();
-  console.log(userValid.distance);
-  while (
-    userValid.distance > yourself.max_distance ||
-    userValid.user.id == yourself.id
-  ) {
-    userValid = await findUser();
-  }
-
-  return response.json(userValid);
+  return response.json(user);
 });
 
 usersRouter.post('/', async (request, response) => {
