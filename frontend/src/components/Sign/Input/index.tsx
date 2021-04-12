@@ -9,6 +9,7 @@ import { IoIosSchool } from 'react-icons/io';
 import 'react-toastify/dist/ReactToastify.css';
 
 import { InputDiv } from './styles';
+import { JsxElement } from 'typescript';
 
 const Text: React.FC<{
   initialValue?: string;
@@ -17,6 +18,7 @@ const Text: React.FC<{
   title: string;
   isPassword?: boolean;
 }> = ({ name, placeholder, initialValue, title, isPassword }) => {
+  /* Função usando switch
   function renderSwitch(param: string) {
     switch (param) {
       case 'name':
@@ -38,7 +40,22 @@ const Text: React.FC<{
       default:
         return <FiLock />;
     }
+  } */
+  //Object literal
+  function renderSwitch(param: string): React.ReactElement {
+    const render: {[key: string]: React.ReactElement} = {
+      name: <FiUser />,
+      last_institution: <FaSchool />,
+      education_level: <IoIosSchool />,
+      currently_company: <MdWork />,
+      currently_title: <MdAssignment />,
+      own_company: <MdBusiness />,
+      email: <FiMail />,
+      confirmPassword: <FiUnlock />
+    };
+    return render[param] || <FiLock />
   }
+  
   const [selected, setSelected] = useState(false);
   const handleClick = () => {
     selected === true ? setSelected(false) : setSelected(true);
