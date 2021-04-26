@@ -10,6 +10,9 @@ interface Request {
   email: string;
   password: string;
   name: string;
+  birth: Date;
+  max_age: number;
+  min_age: number;
 }
 
 export default class UpdateUserService {
@@ -18,6 +21,9 @@ export default class UpdateUserService {
     email,
     password,
     name,
+    birth,
+    min_age,
+    max_age,
   }: Request): Promise<User> {
     const usersRepository = getRepository(User);
     console.log('aa');
@@ -37,7 +43,9 @@ export default class UpdateUserService {
     user.email = email;
     user.password = await hash(password, 8);
     user.name = name;
-
+    user.birth = birth;
+    user.min_age = min_age;
+    user.max_age = max_age;
     await usersRepository.save(user);
     return user;
   }

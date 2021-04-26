@@ -48,6 +48,9 @@ class User {
   max_age: number;
 
   @Column()
+  min_age: number;
+
+  @Column()
   birth: Date;
 
   @CreateDateColumn()

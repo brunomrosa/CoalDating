@@ -29,6 +29,14 @@ export default class addCordsToUser1617655746874 implements MigrationInterface {
     await queryRunner.addColumn(
       'users',
       new TableColumn({
+        name: 'min_age',
+        type: 'decimal',
+        isNullable: true,
+      }),
+    );
+    await queryRunner.addColumn(
+      'users',
+      new TableColumn({
         name: 'lon',
         type: 'decimal',
         isNullable: true,
@@ -41,5 +49,6 @@ export default class addCordsToUser1617655746874 implements MigrationInterface {
     await queryRunner.dropColumn('users', 'lon');
     await queryRunner.dropColumn('users', 'max_distance');
     await queryRunner.dropColumn('users', 'max_age');
+    await queryRunner.dropColumn('users', 'min_age');
   }
 }
