@@ -1,11 +1,12 @@
 /* eslint-disable no-nested-ternary */
 import React, { useState } from 'react';
 
-import { Form, Input } from 'antd';
+import { Form, Input, Slider } from 'antd';
 import { MdWork, MdAssignment, MdBusiness } from 'react-icons/md';
 import { FiUser, FiMail, FiLock, FiUnlock } from 'react-icons/fi';
 import { FaSchool, FaBirthdayCake } from 'react-icons/fa';
 import { IoIosSchool } from 'react-icons/io';
+import { BsFillPeopleFill } from 'react-icons/bs';
 import 'react-toastify/dist/ReactToastify.css';
 
 import { JsxElement } from 'typescript';
@@ -53,6 +54,7 @@ const Text: React.FC<{
       email: <FiMail />,
       confirmPassword: <FiUnlock />,
       birth: <FaBirthdayCake />,
+      age: <BsFillPeopleFill />,
     };
     return render[param] || <FiLock />;
   }
@@ -62,17 +64,13 @@ const Text: React.FC<{
     selected === true ? setSelected(false) : setSelected(true);
   };
   return (
-    <InputDiv onBlur={handleClick} onFocus={handleClick} isSelected={selected}>
+    <InputDiv onBlur={handleClick} onFocus={handleClick} isSelected={false}>
       <div className="logo">{renderSwitch(name)}</div>
       <div className="holderAndInput">
         <p>{title}</p>
 
         <Form.Item name={name}>
-          {isPassword ? (
-            <Input.Password placeholder={placeholder} bordered={false} />
-          ) : (
-            <Input placeholder={placeholder} bordered={false} />
-          )}
+          <Slider min={18} range defaultValue={[20, 50]} />
         </Form.Item>
       </div>
     </InputDiv>

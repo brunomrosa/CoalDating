@@ -28,7 +28,7 @@ const SignInPage: React.FC = () => {
       await signIn(data);
       history.push('dashboard');
     } catch (err) {
-      if (err.response) {
+      if (err.response?.data?.message) {
         toast.error(err.response.data.message);
         setLoading(false);
         return;
