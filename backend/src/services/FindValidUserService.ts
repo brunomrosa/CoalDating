@@ -70,11 +70,17 @@ export default class FindValidUser {
 
     let userValid: Response = await findUser();
 
+    let countSearch = 0;
+
     while (
       userValid.distance > yourself.max_distance ||
       userValid.user.id == yourself.id
     ) {
       userValid = await findUser();
+      countSearch++;
+      if (countSearch >= 10000) {
+        return userValid;
+      }
     }
     const photos = await fileRepository.find({
       where: { user: userValid.user?.id },

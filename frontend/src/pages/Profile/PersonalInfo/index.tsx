@@ -40,7 +40,6 @@ const PersonalInfo: React.FC = () => {
 
   const onFinish = async (data: any) => {
     setLoading(true);
-    console.log(data);
 
     data.min_age = data.age[0];
     data.max_age = data.age[1];

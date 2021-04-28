@@ -5,9 +5,11 @@ import sessionsRouter from './sessions.routes';
 import jobsRouter from './jobs.routes';
 import educationsRouter from './educations.routes';
 import filesRouter from './files.routes';
+import fakerRouter from './faker.routes';
 
 const routes = Router();
 
+routes.use('/faker', fakerRouter);
 routes.use('/users', usersRouter);
 routes.use('/sessions', sessionsRouter);
 routes.use('/jobs', jobsRouter);
