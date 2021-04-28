@@ -1,5 +1,10 @@
 /* eslint-disable no-await-in-loop */
-import { getRepository } from 'typeorm';
+import {
+  getRepository,
+  MoreThanOrEqual,
+  LessThanOrEqual,
+  Between,
+} from 'typeorm';
 
 import User from '../models/User';
 import Job from '../models/Job';
@@ -16,6 +21,7 @@ interface Response {
   job: Job;
   education: Education;
   age: number;
+  distance: number;
 }
 export default class FindValidUser {
   public async execute({ id }: Request): Promise<Response> {
@@ -35,16 +41,26 @@ export default class FindValidUser {
 
       return age;
     }
-
+    // yourself.age = await getAge(yourself?.birth);
     const yourself = await userRepository.findOne({
       where: { id },
     });
-    // yourself.age = await getAge(yourself?.birth);
+    const minAgeYearOfBirth = new Date().getFullYear() - yourself?.min_age;
+    const maxAgeYearOfBirth = new Date().getFullYear() - yourself?.max_age;
+
+    const formatMinAge = new Date(
+      minAgeYearOfBirth.toString(),
+    ).toLocaleDateString('en');
+
+    const formatMaxAge = new Date(
+      maxAgeYearOfBirth.toString(),
+    ).toLocaleDateString('en');
 
     const findUser = async () => {
       const user = await getRepository(User)
         .createQueryBuilder('user')
         .orderBy('RANDOM()')
+        .where(`birth BETWEEN '${formatMaxAge}' AND '${formatMinAge}'`)
         .getOne();
 
       const arr = [yourself, user];
@@ -52,7 +68,7 @@ export default class FindValidUser {
       return { user, distance };
     };
 
-    let userValid = await findUser();
+    let userValid: Response = await findUser();
 
     while (
       userValid.distance > yourself.max_distance ||

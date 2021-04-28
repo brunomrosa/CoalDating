@@ -13,5 +13,6 @@
     ],
     "cli": {
         "migrationsDir": "./src/database/migrations/"
-    }
+    },
+    "logging": ["query", "error"]
 }
