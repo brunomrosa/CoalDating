@@ -12,6 +12,7 @@ api.interceptors.response.use(
     console.log(error.response.status);
     if (error.response.status === 403) {
       createBrowserHistory().push('/signout');
+      createBrowserHistory().go(0);
     }
     return Promise.reject(error);
   },
