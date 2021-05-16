@@ -6,6 +6,7 @@ import jobsRouter from './jobs.routes';
 import educationsRouter from './educations.routes';
 import filesRouter from './files.routes';
 import fakerRouter from './faker.routes';
+import likesRouter from './likes.routes';
 
 const routes = Router();
 
@@ -14,5 +15,6 @@ routes.use('/users', usersRouter);
 routes.use('/sessions', sessionsRouter);
 routes.use('/jobs', jobsRouter);
 routes.use('/files', filesRouter);
+routes.use('/likes', likesRouter);
 routes.use('/educations', educationsRouter);
 export default routes;

@@ -1,9 +1,7 @@
 /* eslint-disable import/extensions */
 /* eslint-disable no-shadow */
-import React, { useState } from 'react';
+import React from 'react';
 
-import { Upload, Modal } from 'antd';
-import { PlusOutlined } from '@ant-design/icons';
 import { Container } from './styles';
 import PhotoWall from './PhotoWall';
 

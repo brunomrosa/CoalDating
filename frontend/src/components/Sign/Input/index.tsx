@@ -8,7 +8,6 @@ import { FaSchool, FaBirthdayCake } from 'react-icons/fa';
 import { IoIosSchool } from 'react-icons/io';
 import 'react-toastify/dist/ReactToastify.css';
 
-import { JsxElement } from 'typescript';
 import { InputDiv } from './styles';
 
 const Text: React.FC<{

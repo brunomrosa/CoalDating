@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from 'react';
 import { Form, Button } from 'antd';
 
@@ -5,7 +6,6 @@ import { toast } from 'react-toastify';
 import { Container } from './styles';
 import Input from '../../../components/Sign/Input';
 import api from '../../../services/api';
-import { useAuth } from '../../../context/AuthContext';
 
 const Job: React.FC = () => {
   const [loading, setLoading] = useState(true);

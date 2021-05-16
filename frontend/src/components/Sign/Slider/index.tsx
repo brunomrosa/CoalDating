@@ -1,7 +1,7 @@
 /* eslint-disable no-nested-ternary */
 import React, { useState } from 'react';
 
-import { Form, Input, Slider } from 'antd';
+import { Form, Slider } from 'antd';
 import { MdWork, MdAssignment, MdBusiness } from 'react-icons/md';
 import { FiUser, FiMail, FiLock, FiUnlock } from 'react-icons/fi';
 import { FaSchool, FaBirthdayCake } from 'react-icons/fa';
@@ -9,7 +9,6 @@ import { IoIosSchool } from 'react-icons/io';
 import { BsFillPeopleFill } from 'react-icons/bs';
 import 'react-toastify/dist/ReactToastify.css';
 
-import { JsxElement } from 'typescript';
 import { InputDiv } from './styles';
 
 const Text: React.FC<{

@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-param-reassign */
 /* eslint-disable prefer-destructuring */
 import React, { useState, useEffect } from 'react';
@@ -71,9 +72,7 @@ const PersonalInfo: React.FC = () => {
       }
     }
   };
-  const handleSlider = (data: any) => {
-    console.log(data);
-  };
+
   return (
     <Container>
       <Form initialValues={user} form={form} name="basic" onFinish={onFinish}>

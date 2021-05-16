@@ -20,6 +20,7 @@ interface signUpCredentials {
   name: string;
   email: string;
   password: string;
+  birth: string;
 }
 interface AuthContextData {
   user: User;
@@ -56,11 +57,12 @@ const AuthProvider: React.FC = ({ children }) => {
     setData({ token, user });
   }, []);
 
-  const signUp = useCallback(async ({ name, email, password }) => {
+  const signUp = useCallback(async ({ name, email, password, birth }) => {
     const response = await api.post('users', {
       name,
       email,
       password,
+      birth,
     });
     console.log(response);
   }, []);

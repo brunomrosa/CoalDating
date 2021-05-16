@@ -22,6 +22,7 @@ const SignUp: React.FC = () => {
       const schema = yup.object().shape({
         name: yup.string().required(),
         email: yup.string().email().required(),
+        birth: yup.string().required(),
         password: yup.string().required().min(6),
         confirmPassword: yup.string().required().min(6),
       });
@@ -58,6 +59,7 @@ const SignUp: React.FC = () => {
           >
             <Input name="name" placeholder="Jane Doe" title="Name" />
             <Input name="email" placeholder="janedoe@coal.com" title="Email" />
+            <Input name="birth" placeholder="1999/01/01" title="Birth" />
             <Input
               isPassword
               name="password"

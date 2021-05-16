@@ -1,18 +1,8 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import api from '../../../../services/api';
-import { Upload, Modal, Button } from 'antd';
+import { Upload, Modal } from 'antd';
 import { Container } from './styles';
 import { PlusOutlined } from '@ant-design/icons';
-
-function getBase64(file) {
-  return new Promise((resolve, reject) => {
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onload = () => resolve(reader.result);
-    reader.onerror = error => reject(error);
-  });
-}
 
 class PicturesWall extends React.Component {
   componentWillMount() {

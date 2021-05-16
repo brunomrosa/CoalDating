@@ -3,6 +3,10 @@ import styled from 'styled-components';
 interface ButtonProps {
   likeButton?: boolean;
 }
+
+interface ImgProps {
+  url?: string;
+}
 export const Container = styled.div`
   height: 100vh;
   justify-content: center;
@@ -50,16 +54,20 @@ export const MainProfile = styled.div`
   width: 480px;
   height: 630px;
   margin: 0px 30px;
-  div {
-    width: 480px;
-    height: 630px;
-    background-size: 480px 630px;
-    border-radius: 10px;
-    background-image: url('https://images.pexels.com/photos/789812/pexels-photo-789812.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940');
-    display: flex;
-    justify-content: space-evenly;
-    align-items: flex-end;
-  }
+`;
+
+export const ImgBackground = styled.div<ImgProps>`
+  width: 480px;
+  height: 630px;
+  background-size: 480px 630px;
+  border-radius: 10px;
+  background-image: url(${props =>
+    props.url
+      ? props.url
+      : 'https://images.pexels.com/photos/789812/pexels-photo-789812.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940'});
+  display: flex !important;
+  justify-content: space-evenly;
+  align-items: flex-end;
   li button {
     background: red;
   }

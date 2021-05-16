@@ -37,12 +37,7 @@ usersRouter.get('/find', ensureAuthenticated, async (request, response) => {
 usersRouter.post('/', async (request, response) => {
   const createUser = new CreateUserService();
 
-  const { name, email, password } = request.body;
-  const user = await createUser.execute({
-    name,
-    email,
-    password,
-  });
+  const user = await createUser.execute(request.body);
 
   delete user.password;
 
